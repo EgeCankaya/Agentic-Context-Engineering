@@ -24,6 +24,9 @@ from pydantic_settings import BaseSettings
 
 logger = logging.getLogger(__name__)
 
+# Expose class name expected by tests for patching
+Ollama = _OllamaLLM
+
 
 class LLMConfig(BaseSettings):
     """Configuration for Llama 3.1 8B local inference"""
@@ -31,7 +34,7 @@ class LLMConfig(BaseSettings):
     model_config = ConfigDict(extra="allow", env_prefix="ACE_LLM_")
 
     provider: str = "ollama"
-    model: str = "mistral:7b-instruct"
+    model: str = "llama3.1:8b-instruct-fp16"
     base_url: str = "http://localhost:11434"
     temperature: float = 0.7
     max_tokens: int = 2000
@@ -100,7 +103,7 @@ class LLMClient:
             repeat_penalty=1.1,
         )
 
-    def generate(self, prompt: str, **kwargs) -> str:
+    def generate(self, prompt: str, **kwargs: Any) -> str:
         """
         Generate text from prompt using Llama 3.1 8B.
 
@@ -142,7 +145,7 @@ class LLMClient:
             logger.error(f"Generation failed: {e}")
             raise
 
-    def generate_batch(self, prompts: list[str], **kwargs) -> list[str]:
+    def generate_batch(self, prompts: list[str], **kwargs: Any) -> list[str]:
         """
         Generate responses for multiple prompts.
 

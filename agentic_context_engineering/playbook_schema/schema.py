@@ -28,7 +28,7 @@ class FewShotExample(BaseModel):
     input: str
     output: str
     annotation: str
-    quality_score: float = Field(ge=0.0, le=1.0, description="Quality score 0-1")
+    quality_score: float = Field(default=0.8, ge=0.0, le=1.0, description="Quality score 0-1")
 
 
 class PerformanceMetrics(BaseModel):
