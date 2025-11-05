@@ -1,0 +1,41 @@
+llm:
+  provider: "ollama"
+  base_url: "http://localhost:11434"
+  model: "mistral:7b-instruct"
+
+  parameters:
+    temperature: 0.7          # Balanced creativity/consistency
+    max_tokens: 2000          # Generous limit for detailed outputs
+    top_p: 0.9
+    num_ctx: 8192             # Context window (8K sufficient for ACE)
+    repeat_penalty: 1.1       # Prevent repetition
+
+  gpu:
+    num_gpu: 1                # Use single GPU
+    gpu_memory_fraction: 0.9  # Use 90% of VRAM
+    enable_kv_cache: true     # Cache context for speed
+
+ace:
+  max_iterations: 10
+  convergence_threshold: 0.05  # Stop if improvement < 5%
+  reflection_batch_size: 3     # Evaluate 3 outputs per reflection call
+  early_stopping_patience: 2   # Stop if no improvement for 2 iterations
+  max_examples: 8              # Cap few-shot examples after pruning
+
+evaluation:
+  metrics: ["bleu", "rouge", "exact_match", "semantic_similarity"]
+  holdout_ratio: 0.2
+  manual_review_samples: 10
+  gate_bleu_delta: 0.01        # +1.0 BLEU point on 0-1 scale
+  gate_em_delta: 0.02          # +2% absolute EM
+
+performance:
+  max_concurrent_requests: 1   # Sequential processing (one at a time)
+  warm_start: true             # Keep model loaded between iterations
+  log_vram_usage: true         # Monitor GPU memory
+
+logging:
+  level: "INFO"
+  save_intermediate: true
+  output_dir: "./outputs"
+  structured_format: "json"

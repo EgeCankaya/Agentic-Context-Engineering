@@ -1,0 +1,66 @@
+[
+  {
+    "id": "sess001_turn_0",
+    "input": "How do transformers use self-attention to understand context?",
+    "reference_output": "Transformers compute attention weights across every token pair, allowing each position to focus on the tokens that matter most. Each attention head learns complementary patterns and the outputs are combined before feed-forward processing.",
+    "evaluation_criteria": {
+      "must_include": [
+        "attention",
+        "weights",
+        "tokens"
+      ],
+      "subtopics": [
+        "self-attention",
+        "multi-head",
+        "context"
+      ],
+      "preferred_sources": [
+        "Course 12"
+      ]
+    },
+    "metadata": {
+      "course": 12,
+      "module": "Self-Attention",
+      "retrieved_docs": [
+        {
+          "id": "course12_transformer_attn",
+          "score": 0.92
+        },
+        {
+          "id": "course13_finetuning",
+          "score": 0.27
+        }
+      ]
+    }
+  },
+  {
+    "id": "sess001_turn_1",
+    "input": "List the high-level steps for fine-tuning a transformer on custom text data.",
+    "reference_output": "Prepare and clean your dataset, tokenize with the model's tokenizer, configure optimisation parameters, then run supervised fine-tuning while monitoring validation loss.",
+    "evaluation_criteria": {
+      "must_include": [
+        "dataset",
+        "tokenize",
+        "optimize"
+      ],
+      "subtopics": [
+        "data preparation",
+        "tokenization",
+        "training"
+      ],
+      "preferred_sources": [
+        "Course 13"
+      ]
+    },
+    "metadata": {
+      "course": 13,
+      "module": "Fine-Tuning Workflow",
+      "retrieved_docs": [
+        {
+          "id": "course13_finetuning",
+          "score": 0.88
+        }
+      ]
+    }
+  }
+]

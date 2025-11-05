@@ -1,0 +1,71 @@
+[
+  {
+    "id": "task_008",
+    "input": "What's the best way to work with environment variables in Python?",
+    "reference_output": "To work with environment variables, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_004",
+    "input": "How can I handle user input validation in Python?",
+    "reference_output": "Here's how to handle user input validation in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_006",
+    "input": "What's the best way to make HTTP requests in Python?",
+    "reference_output": "Use the `requests` library:\n\n```python\nimport requests\n\n# GET request\nresponse = requests.get('https://api.example.com/data')\nresponse.raise_for_status()  # Raise exception for bad status\ndata = response.json()\n\n# POST request\nresponse = requests.post('https://api.example.com/data', \n                       json={'key': 'value'})\n```\n\n**Installation:** `pip install requests`\n**Documentation:** https://requests.readthedocs.io/",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "medium",
+    "tags": [
+      "action",
+      "networking"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_003",
+    "input": "How do I parse command line arguments in Python?",
+    "reference_output": "To parse command line arguments, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action"
+    ],
+    "question_type": "action"
+  }
+]

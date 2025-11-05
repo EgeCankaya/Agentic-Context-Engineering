@@ -1,0 +1,176 @@
+[
+  {
+    "id": "task_035",
+    "input": "How can I handle large file processing in Python?",
+    "reference_output": "Here's how to handle large file processing in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario",
+      "file-io"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_011",
+    "input": "How do I implement descriptors in Python?",
+    "reference_output": "Here's how to implement descriptors in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "explanation": "Provides clear conceptual explanation",
+      "examples": "Includes practical examples"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "concept"
+    ],
+    "question_type": "concept"
+  },
+  {
+    "id": "task_024",
+    "input": "How can I handle API rate limiting in Python?",
+    "reference_output": "Here's how to handle API rate limiting in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_010",
+    "input": "What's the most efficient way to handle async operations in Python?",
+    "reference_output": "To handle async operations, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action",
+      "asyncio"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_013",
+    "input": "How do I implement decorators in Python?",
+    "reference_output": "Decorators modify function behavior:\n\n```python\ndef my_decorator(func):\n    def wrapper(*args, **kwargs):\n        print(\"Before function call\")\n        result = func(*args, **kwargs)\n        print(\"After function call\")\n        return result\n    return wrapper\n\n@my_decorator\ndef greet(name):\n    return f\"Hello, {name}!\"\n```\n\n**Documentation:** https://docs.python.org/3/glossary.html#term-decorator",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "explanation": "Provides clear conceptual explanation",
+      "examples": "Includes practical examples"
+    },
+    "difficulty": "medium",
+    "tags": [
+      "concept"
+    ],
+    "question_type": "concept"
+  },
+  {
+    "id": "task_039",
+    "input": "How can I handle database connection failures in Python?",
+    "reference_output": "Here's how to handle database connection failures in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario",
+      "database"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_033",
+    "input": "How can I create unit tests using Python?",
+    "reference_output": "To create unit tests, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action",
+      "testing"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_050",
+    "input": "How can I handle memory issues in Python?",
+    "reference_output": "Here's how to handle memory issues in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_020",
+    "input": "How can I handle concurrent access in Python?",
+    "reference_output": "Here's how to handle concurrent access in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_041",
+    "input": "How do I implement list comprehensions in Python?",
+    "reference_output": "List comprehensions provide a concise way to create lists:\n\n```python\n# Basic syntax: [expression for item in iterable if condition]\n\n# Example: squares of even numbers\nsquares = [x**2 for x in range(10) if x % 2 == 0]\n\n# Equivalent to:\nsquares = []\nfor x in range(10):\n    if x % 2 == 0:\n        squares.append(x**2)\n```\n\n**Documentation:** https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "explanation": "Provides clear conceptual explanation",
+      "examples": "Includes practical examples"
+    },
+    "difficulty": "medium",
+    "tags": [
+      "concept"
+    ],
+    "question_type": "concept"
+  }
+]

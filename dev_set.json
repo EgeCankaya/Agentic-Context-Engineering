@@ -1,0 +1,347 @@
+[
+  {
+    "id": "task_046",
+    "input": "How can I handle network timeouts in Python?",
+    "reference_output": "Handle network timeouts with requests:\n\n```python\nimport requests\nfrom requests.exceptions import Timeout\n\ntry:\n    response = requests.get('https://api.example.com', timeout=5)\n    response.raise_for_status()\nexcept Timeout:\n    print(\"Request timed out\")\nexcept requests.exceptions.RequestException as e:\n    print(f\"Request failed: {e}\")\n```\n\n**Documentation:** https://requests.readthedocs.io/en/latest/user/quickstart/#timeouts",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "medium",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_031",
+    "input": "How can I write to a CSV file using Python?",
+    "reference_output": "Use the `csv` module for structured CSV writing:\n\n```python\nimport csv\n\ndata = [['Name', 'Age'], ['Alice', 30], ['Bob', 25]]\n\nwith open('output.csv', 'w', newline='') as f:\n    writer = csv.writer(f)\n    writer.writerows(data)\n```\n\n**Documentation:** https://docs.python.org/3/library/csv.html",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "medium",
+    "tags": [
+      "action",
+      "csv"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_030",
+    "input": "How can I handle API rate limiting in Python?",
+    "reference_output": "Here's how to handle API rate limiting in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_012",
+    "input": "How can I connect to a database using Python?",
+    "reference_output": "To connect to a database, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action",
+      "database"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_023",
+    "input": "What's the recommended approach for generators in Python?",
+    "reference_output": "Here's how to implement generators in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "explanation": "Provides clear conceptual explanation",
+      "examples": "Includes practical examples"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "concept"
+    ],
+    "question_type": "concept"
+  },
+  {
+    "id": "task_017",
+    "input": "What's the most efficient way to handle async operations in Python?",
+    "reference_output": "To handle async operations, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action",
+      "asyncio"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_045",
+    "input": "How can I handle data validation in Python?",
+    "reference_output": "Here's how to handle data validation in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_047",
+    "input": "How can I handle API rate limiting in Python?",
+    "reference_output": "Here's how to handle API rate limiting in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_042",
+    "input": "What's the best way to parse command line arguments in Python?",
+    "reference_output": "To parse command line arguments, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_015",
+    "input": "What's the recommended approach for list comprehensions in Python?",
+    "reference_output": "List comprehensions provide a concise way to create lists:\n\n```python\n# Basic syntax: [expression for item in iterable if condition]\n\n# Example: squares of even numbers\nsquares = [x**2 for x in range(10) if x % 2 == 0]\n\n# Equivalent to:\nsquares = []\nfor x in range(10):\n    if x % 2 == 0:\n        squares.append(x**2)\n```\n\n**Documentation:** https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "explanation": "Provides clear conceptual explanation",
+      "examples": "Includes practical examples"
+    },
+    "difficulty": "medium",
+    "tags": [
+      "concept"
+    ],
+    "question_type": "concept"
+  },
+  {
+    "id": "task_004",
+    "input": "How can I handle user input validation in Python?",
+    "reference_output": "Here's how to handle user input validation in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_007",
+    "input": "What's the most efficient way to handle authentication in Python?",
+    "reference_output": "To handle authentication, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_044",
+    "input": "What's the recommended approach for class inheritance in Python?",
+    "reference_output": "Here's how to implement class inheritance in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "explanation": "Provides clear conceptual explanation",
+      "examples": "Includes practical examples"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "concept"
+    ],
+    "question_type": "concept"
+  },
+  {
+    "id": "task_014",
+    "input": "How do I implement list comprehensions in Python?",
+    "reference_output": "List comprehensions provide a concise way to create lists:\n\n```python\n# Basic syntax: [expression for item in iterable if condition]\n\n# Example: squares of even numbers\nsquares = [x**2 for x in range(10) if x % 2 == 0]\n\n# Equivalent to:\nsquares = []\nfor x in range(10):\n    if x % 2 == 0:\n        squares.append(x**2)\n```\n\n**Documentation:** https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "explanation": "Provides clear conceptual explanation",
+      "examples": "Includes practical examples"
+    },
+    "difficulty": "medium",
+    "tags": [
+      "concept"
+    ],
+    "question_type": "concept"
+  },
+  {
+    "id": "task_028",
+    "input": "What's the proper way to handle async operations in Python?",
+    "reference_output": "To handle async operations, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action",
+      "asyncio"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_009",
+    "input": "How can I handle user input validation in Python?",
+    "reference_output": "Here's how to handle user input validation in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  },
+  {
+    "id": "task_006",
+    "input": "What's the best way to make HTTP requests in Python?",
+    "reference_output": "Use the `requests` library:\n\n```python\nimport requests\n\n# GET request\nresponse = requests.get('https://api.example.com/data')\nresponse.raise_for_status()  # Raise exception for bad status\ndata = response.json()\n\n# POST request\nresponse = requests.post('https://api.example.com/data', \n                       json={'key': 'value'})\n```\n\n**Installation:** `pip install requests`\n**Documentation:** https://requests.readthedocs.io/",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "medium",
+    "tags": [
+      "action",
+      "networking"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_022",
+    "input": "How do I install packages in Python?",
+    "reference_output": "To install packages, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_025",
+    "input": "How do I implement lambda functions in Python?",
+    "reference_output": "Here's how to implement lambda functions in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "explanation": "Provides clear conceptual explanation",
+      "examples": "Includes practical examples"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "concept"
+    ],
+    "question_type": "concept"
+  },
+  {
+    "id": "task_038",
+    "input": "How can I handle cross-platform compatibility in Python?",
+    "reference_output": "Here's how to handle cross-platform compatibility in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  }
+]

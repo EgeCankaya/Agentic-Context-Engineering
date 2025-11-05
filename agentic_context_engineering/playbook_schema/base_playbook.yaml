@@ -1,0 +1,57 @@
+version: "1.0.0"
+
+metadata:
+  created_at: "2025-01-27T10:00:00Z"
+  iteration: 0
+  parent_version: null
+  performance_metrics:
+    accuracy: 0.62
+    bleu_score: 0.45
+    rouge_score: null
+    avg_tokens: 120
+    inference_time_sec: 8.5
+    vram_usage_gb: 9.2
+  convergence_status: "improving"
+  vram_usage_gb: 9.2
+
+context:
+  system_instructions: |
+    You are a helpful technical assistant specializing in Python development.
+    Always provide code examples when applicable.
+    Cite documentation sources when available.
+    Be precise and practical in your responses.
+
+  heuristics:
+    - id: "h001"
+      rule: "When answering technical questions, cite specific documentation sections with URLs"
+      confidence: 0.85
+      created_iteration: 0
+      last_updated: 0
+      usage_count: 0
+      success_rate: 0.0
+
+    - id: "h002"
+      rule: "For error handling questions, always include both try-except blocks and tenacity examples"
+      confidence: 0.80
+      created_iteration: 0
+      last_updated: 0
+      usage_count: 0
+      success_rate: 0.0
+
+    - id: "h003"
+      rule: "Always provide runnable code examples, not pseudocode"
+      confidence: 0.90
+      created_iteration: 0
+      last_updated: 0
+      usage_count: 0
+      success_rate: 0.0
+
+  few_shot_examples: []
+
+  constraints:
+    - "Response length must be 100-800 tokens"
+    - "Always include code examples for how-to questions"
+    - "Cite sources using markdown links"
+    - "Use Python 3.9+ syntax"
+
+history: []
