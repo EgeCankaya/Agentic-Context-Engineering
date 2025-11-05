@@ -80,10 +80,10 @@ class LLMClient:
             )
 
     def _initialize_llm(self):
-        """Initialize Ollama LLM using langchain-ollama when available."""
+        """Initialize Ollama LLM using alias `Ollama` (patched in tests)."""
         if _NEW_OLLAMA:
             # New API prefers model_kwargs for context/predict settings
-            return _OllamaLLM(
+            return Ollama(
                 model=self.config.model,
                 base_url=self.config.base_url,
                 temperature=self.config.temperature,
@@ -94,7 +94,7 @@ class LLMClient:
                 },
             )
         # Fallback legacy
-        return _OllamaLLM(
+        return Ollama(
             model=self.config.model,
             base_url=self.config.base_url,
             temperature=self.config.temperature,
