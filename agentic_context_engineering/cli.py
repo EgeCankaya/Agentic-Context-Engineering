@@ -94,7 +94,7 @@ def run(ctx, iterations, tasks, playbook, output, eval_dataset):
 
     except Exception as e:
         print(f"Error: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @cli.command()
@@ -121,7 +121,7 @@ def evaluate(ctx, playbook, dataset, output):
         with Progress(
             SpinnerColumn(), TextColumn("[progress.description]{task.description}"), console=console
         ) as progress:
-            task = progress.add_task("Evaluating playbook...", total=None)
+            progress.add_task("Evaluating playbook...", total=None)
 
             results = runner.evaluate_playbook(playbook_obj, test_dataset)
 
@@ -136,7 +136,7 @@ def evaluate(ctx, playbook, dataset, output):
 
     except Exception as e:
         print(f"Error: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @cli.command()
@@ -161,7 +161,7 @@ def diff(ctx, from_version, to_version, dataset, output):
         with Progress(
             SpinnerColumn(), TextColumn("[progress.description]{task.description}"), console=console
         ) as progress:
-            task = progress.add_task("Comparing playbooks...", total=None)
+            progress.add_task("Comparing playbooks...", total=None)
 
             results = runner.compare_playbooks(from_version, to_version, test_dataset)
 
@@ -176,7 +176,7 @@ def diff(ctx, from_version, to_version, dataset, output):
 
     except Exception as e:
         print(f"Error: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @cli.command()
@@ -184,7 +184,7 @@ def diff(ctx, from_version, to_version, dataset, output):
 @click.option("--output", "-o", required=True, help="Output file path")
 @click.option("--results-dir", "-r", help="Results directory to export from")
 @click.pass_context
-def export(ctx, format, output, results_dir):
+def export(ctx, fmt, output, results_dir):
     """Export results to CSV or JSON"""
     try:
         # Set results directory
@@ -207,7 +207,7 @@ def export(ctx, format, output, results_dir):
             results = json.load(f)
 
         # Export in requested format
-        if format == "csv":
+        if fmt == "csv":
             _export_to_csv(results, output)
         else:
             with open(output, "w") as f:
@@ -217,7 +217,7 @@ def export(ctx, format, output, results_dir):
 
     except Exception as e:
         print(f"Error: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @cli.command(name="check-gpu")
@@ -250,7 +250,7 @@ def check_gpu_cli(ctx):
 
     except Exception as e:
         print(f"Error: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @cli.command()
@@ -299,7 +299,7 @@ def export_context(ctx, version, output):
 
     except Exception as e:
         print(f"Error: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @cli.command()
@@ -340,7 +340,7 @@ def summarize(ctx, results_dir):
 
     except Exception as e:
         print(f"Error: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 @cli.command()
@@ -353,7 +353,7 @@ def validate(ctx, dev_iterations):
         with Progress(
             SpinnerColumn(), TextColumn("[progress.description]{task.description}"), console=console
         ) as progress:
-            task = progress.add_task("Running validation...", total=None)
+            progress.add_task("Running validation...", total=None)
             results = runner.run_validation(dev_iterations=dev_iterations)
         console.print("[green]Validation complete[/green]")
         # Print brief summary
@@ -366,7 +366,7 @@ def validate(ctx, dev_iterations):
         console.print(f"Holdout BLEU: {qm.get('bleu', 0.0):.3f}, EM: {qm.get('exact_match', 0.0):.3f}")
     except Exception as e:
         print(f"Error: {e}")
-        raise click.Abort()
+        raise click.Abort() from e
 
 
 def _display_results(results: dict):

@@ -1,4 +1,5 @@
-from agentic_context_engineering.foo import foo
+def foo(x: str) -> str:
+    return x
 
 
 def test_foo():

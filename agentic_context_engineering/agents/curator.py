@@ -222,14 +222,11 @@ class Curator:
         rule_lower = heuristic.rule.lower()
 
         # Simple keyword matching
-        if (
+        return (
             ("code" in suggestion_lower and "code" in rule_lower)
             or ("citation" in suggestion_lower and "citation" in rule_lower)
             or ("explanation" in suggestion_lower and "explanation" in rule_lower)
-        ):
-            return True
-
-        return False
+        )
 
     def _refine_heuristic_rule(self, current_rule: str, suggestion: str) -> str:
         """Refine a heuristic rule based on a suggestion."""
@@ -396,15 +393,13 @@ class Curator:
         new_instructions = playbook.context.system_instructions
 
         # Add guidance for common improvement areas
-        if "code_examples" in analysis["improvement_areas"]:
-            if "code examples" not in new_instructions.lower():
-                new_instructions += "\nAlways provide runnable code examples when relevant."
-                needs_update = True
+        if "code_examples" in analysis["improvement_areas"] and "code examples" not in new_instructions.lower():
+            new_instructions += "\nAlways provide runnable code examples when relevant."
+            needs_update = True
 
-        if "documentation_citations" in analysis["improvement_areas"]:
-            if "citation" not in new_instructions.lower():
-                new_instructions += "\nCite official documentation sources with URLs."
-                needs_update = True
+        if "documentation_citations" in analysis["improvement_areas"] and "citation" not in new_instructions.lower():
+            new_instructions += "\nCite official documentation sources with URLs."
+            needs_update = True
 
         if needs_update:
             playbook.context.system_instructions = new_instructions

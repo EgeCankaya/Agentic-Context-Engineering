@@ -1,1 +1,1 @@
-::: agentic_context_engineering.foo
+::: agentic_context_engineering
