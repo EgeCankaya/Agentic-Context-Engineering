@@ -5,10 +5,9 @@ Produces model outputs based on current playbook context.
 
 import logging
 from collections.abc import Iterable
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, TypedDict
 
 from ..playbook_schema import Playbook
-from ..utils.llm_client import LLMClient
 
 logger = logging.getLogger(__name__)
 
@@ -21,7 +20,7 @@ class Generator:
     heuristics, and few-shot examples, then uses the LLM to generate responses.
     """
 
-    def __init__(self, llm_client: LLMClient):
+    def __init__(self, llm_client: Any):
         """
         Initialize Generator agent.
 
@@ -278,6 +277,13 @@ class Generator:
         template = self.construct_prompt("Sample task", playbook)
         return len(template)
 
+    class _ValidationResult(TypedDict):
+        length_ok: bool
+        not_empty: bool
+        contains_task_keywords: bool
+        has_structure: bool
+        issues: List[str]
+
     def validate_response(self, response: str, task: str) -> Dict[str, Any]:
         """
         Validate generated response against basic criteria.
@@ -289,7 +295,7 @@ class Generator:
         Returns:
             Validation results
         """
-        validation = {
+        validation: Generator._ValidationResult = {
             "length_ok": 50 <= len(response) <= 2000,
             "not_empty": len(response.strip()) > 0,
             "contains_task_keywords": any(word in response.lower() for word in task.lower().split()),

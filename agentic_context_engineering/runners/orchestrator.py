@@ -309,7 +309,19 @@ class ACEOrchestrator:
         Returns:
             Results of all iterations
         """
-        results = {"iterations": [], "final_playbook": playbook, "convergence_reached": False, "total_iterations": 0}
+
+        class _RunResults(TypedDict):
+            iterations: List[Dict[str, Any]]
+            final_playbook: Playbook
+            convergence_reached: bool
+            total_iterations: int
+
+        results: _RunResults = {
+            "iterations": [],
+            "final_playbook": playbook,
+            "convergence_reached": False,
+            "total_iterations": 0,
+        }
 
         current_playbook = playbook
         # If evaluation_dataset provided per call, override instance default

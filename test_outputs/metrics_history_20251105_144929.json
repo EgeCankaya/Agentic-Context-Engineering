@@ -1,0 +1,44 @@
+{
+  "iteration": [
+    0
+  ],
+  "avg_reflection_score": [
+    0.8
+  ],
+  "avg_output_length": [
+    0.0
+  ],
+  "code_example_rate": [
+    0.0
+  ],
+  "citation_rate": [
+    0.0
+  ],
+  "bleu": [
+    0.0
+  ],
+  "exact_match": [
+    0.0
+  ],
+  "rougeL": [
+    0.0
+  ],
+  "semantic_similarity": [
+    0.0
+  ],
+  "overall_accuracy": [
+    0.0
+  ],
+  "delta_bleu": [
+    0.0
+  ],
+  "delta_exact_match": [
+    0.0
+  ],
+  "num_heuristics": [
+    0
+  ],
+  "num_examples": [
+    0
+  ]
+}

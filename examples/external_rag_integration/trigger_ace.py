@@ -4,14 +4,23 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import List, Optional
+from typing import TYPE_CHECKING, Any, List, Optional, cast
 
-import typer
 from rich import print as rich_print
 
 from agentic_context_engineering import ACERunner, Playbook
 
-app = typer.Typer(add_completion=False)
+if TYPE_CHECKING:  # pragma: no cover
+    pass
+typer: Any
+try:
+    import typer as _typer  # type: ignore
+
+    typer = _typer
+except Exception:  # pragma: no cover
+    typer = cast(Any, object())
+
+app = typer.Typer(add_completion=False) if hasattr(typer, "Typer") else None
 
 
 def load_tasks(dataset_path: Path) -> List[str]:
@@ -22,7 +31,7 @@ def load_tasks(dataset_path: Path) -> List[str]:
     return [item["input"] for item in data]
 
 
-@app.command()
+@(app.command() if app else (lambda f: f))
 def run(
     iterations: int = typer.Option(2, help="Number of ACE iterations to run"),
     tasks_path: str = typer.Option(
@@ -49,5 +58,5 @@ def run(
     rich_print(f"[bold green]ACE complete[/bold green] - Generated playbook version {final_playbook.version}")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and app is not None:
     app()

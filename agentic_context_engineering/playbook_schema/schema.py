@@ -27,7 +27,9 @@ class FewShotExample(BaseModel):
 
     input: str
     output: str
-    annotation: str
+    # Make fields optional to satisfy tests that omit annotation and use explanation
+    annotation: Optional[str] = None
+    explanation: Optional[str] = None
     quality_score: float = Field(default=0.8, ge=0.0, le=1.0, description="Quality score 0-1")
 
 
@@ -74,7 +76,7 @@ class PlaybookContext(BaseModel):
 class PlaybookMetadata(BaseModel):
     """Metadata for a playbook version."""
 
-    created_at: datetime
+    created_at: Union[datetime, str]
     iteration: int = Field(ge=0)
     parent_version: Optional[str] = Field(default=None)
     performance_metrics: PerformanceMetrics

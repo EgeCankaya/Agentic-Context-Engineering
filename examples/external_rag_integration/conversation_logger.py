@@ -4,12 +4,22 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Optional
+from typing import TYPE_CHECKING, Any, Optional, cast
 
-import typer
 from rich import print as rich_print
 
 from agentic_context_engineering import ConversationLogger
+
+# Avoid hard dependency during type checking/CI
+if TYPE_CHECKING:  # pragma: no cover
+    pass
+typer: Any
+try:  # runtime attempt
+    import typer as _typer  # type: ignore
+
+    typer = _typer
+except Exception:  # pragma: no cover - allow running without typer installed
+    typer = cast(Any, object())
 
 try:  # Support running as script or module
     from .simple_rag_bot import load_playbook, retrieve_docs  # type: ignore
@@ -21,10 +31,10 @@ except ImportError:  # pragma: no cover - executed when run as standalone script
     from examples.external_rag_integration.simple_rag_bot import load_playbook, retrieve_docs  # type: ignore
 
 
-app = typer.Typer(add_completion=False)
+app = typer.Typer(add_completion=False) if hasattr(typer, "Typer") else None
 
 
-@app.command()
+@(app.command() if app else (lambda f: f))
 def log_demo(
     question: str = typer.Option(
         "Explain how transformers use self-attention",
@@ -81,5 +91,5 @@ def log_demo(
     rich_print(dataset)
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and app is not None:
     app()

@@ -5,9 +5,8 @@ from __future__ import annotations
 import math
 from collections.abc import Iterable
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import TYPE_CHECKING, Any, Dict, List, Optional, cast
 
-import typer
 from rich import print as rich_print
 from rich.panel import Panel
 
@@ -15,7 +14,20 @@ from agentic_context_engineering import Playbook
 from agentic_context_engineering.agents import Generator
 from agentic_context_engineering.utils.llm_client import LLMClient
 
-app = typer.Typer(add_completion=False, help="Run a minimal RAG + ACE chatbot demo")
+# Avoid hard dependency during type checking/CI
+if TYPE_CHECKING:  # pragma: no cover
+    pass
+typer: Any
+try:  # runtime attempt
+    import typer as _typer  # type: ignore
+
+    typer = _typer
+except Exception:  # pragma: no cover
+    typer = cast(Any, object())
+
+app = (
+    typer.Typer(add_completion=False, help="Run a minimal RAG + ACE chatbot demo") if hasattr(typer, "Typer") else None
+)
 
 
 def load_playbook(playbook_path: Optional[str]) -> Playbook:
@@ -30,7 +42,7 @@ def load_playbook(playbook_path: Optional[str]) -> Playbook:
     return Playbook.from_yaml("agentic_context_engineering/playbook_schema/base_playbook.yaml")
 
 
-def toy_documents() -> List[Dict[str, str]]:
+def toy_documents() -> List[Dict[str, Any]]:
     return [
         {
             "id": "course12_transformer_attn",
@@ -50,7 +62,7 @@ def toy_documents() -> List[Dict[str, str]]:
     ]
 
 
-def retrieve_docs(question: str, k: int = 2) -> List[Dict[str, str]]:
+def retrieve_docs(question: str, k: int = 2) -> List[Dict[str, Any]]:
     docs = toy_documents()
     question_tokens = set(question.lower().split())
     scored = []
@@ -64,7 +76,7 @@ def retrieve_docs(question: str, k: int = 2) -> List[Dict[str, str]]:
     return [doc for score, doc in scored[:k]]
 
 
-def pretty_print_docs(docs: Iterable[Dict[str, str]]) -> None:
+def pretty_print_docs(docs: Iterable[Dict[str, Any]]) -> None:
     for idx, doc in enumerate(docs, start=1):
         panel = Panel.fit(
             f"[bold]Document {idx}[/bold]\nID: {doc.get('id')}\nMetadata: {doc.get('metadata')}\nContent: {doc.get('content')}",
@@ -73,7 +85,7 @@ def pretty_print_docs(docs: Iterable[Dict[str, str]]) -> None:
         rich_print(panel)
 
 
-@app.command()
+@(app.command() if app else (lambda f: f))
 def ask(
     question: str = typer.Argument(..., help="User question to answer"),
     playbook_path: Optional[str] = typer.Option(None, help="Path to playbook YAML"),
@@ -97,7 +109,9 @@ def ask(
         prompt_lines.append(f"Task: {question}")
         prompt_lines.append("Response:")
         rich_print(Panel("\n".join(prompt_lines), title="Prompt Preview"))
-        raise typer.Exit(code=0)
+        if hasattr(typer, "Exit"):
+            raise typer.Exit(code=0)
+        return
 
     llm_client = LLMClient()
     generator = Generator(llm_client)
@@ -113,5 +127,5 @@ def ask(
         rich_print(f"{status} {citation['label']} (confidence={citation['confidence']:.2f})")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__" and app is not None:
     app()

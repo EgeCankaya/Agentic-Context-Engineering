@@ -3,20 +3,10 @@ LLM Client for ACE - Llama 3.1 8B Instruct via Ollama
 Provides unified interface for Generator, Reflector, and Curator agents.
 """
 
+import importlib
 import logging
-from typing import Any, Dict, Optional
-
-try:
-    # Preferred modern package
-    from langchain_ollama import OllamaLLM as _OllamaLLM
-
-    _NEW_OLLAMA = True
-except Exception:  # pragma: no cover
-    # Fallback to community (deprecated)
-    from langchain_community.llms import Ollama as _OllamaLLM
-
-    _NEW_OLLAMA = False
 import time
+from typing import Any, Dict, Optional
 
 import torch
 from pydantic import ConfigDict
@@ -24,14 +14,30 @@ from pydantic_settings import BaseSettings
 
 logger = logging.getLogger(__name__)
 
-# Expose class name expected by tests for patching
-Ollama = _OllamaLLM
+# Resolve Ollama driver lazily to avoid hard import for type checker and CI
+_NEW_OLLAMA = False
+
+
+def _resolve_ollama_cls():
+    global _NEW_OLLAMA
+    try:
+        mod = importlib.import_module("langchain_ollama")
+        _NEW_OLLAMA = True
+        return mod.OllamaLLM
+    except Exception:  # pragma: no cover
+        mod = importlib.import_module("langchain_community.llms")
+        _NEW_OLLAMA = False
+        return mod.Ollama
+
+
+# Expose name expected by tests for patching
+Ollama = _resolve_ollama_cls()
 
 
 class LLMConfig(BaseSettings):
     """Configuration for Llama 3.1 8B local inference"""
 
-    model_config = ConfigDict(extra="allow", env_prefix="ACE_LLM_")
+    model_config = ConfigDict(extra="allow")
 
     provider: str = "ollama"
     model: str = "llama3.1:8b-instruct-fp16"

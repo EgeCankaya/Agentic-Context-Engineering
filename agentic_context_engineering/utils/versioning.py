@@ -5,7 +5,7 @@ Handles semantic versioning, Git integration, and playbook comparison.
 
 import re
 import subprocess
-from typing import Dict, List
+from typing import Any, Dict, List, Optional
 
 
 def increment_version(version: str, bump_type: str) -> str:
@@ -82,7 +82,7 @@ def suggest_version_bump(change_types: List[str]) -> str:
         return "patch"  # Bug fixes and refinements
 
 
-def commit_playbook(playbook_path: str, version: str, message: str = None) -> bool:
+def commit_playbook(playbook_path: str, version: str, message: Optional[str] = None) -> bool:
     """
     Commit playbook to Git with appropriate message.
 
@@ -110,7 +110,7 @@ def commit_playbook(playbook_path: str, version: str, message: str = None) -> bo
         return False
 
 
-def tag_playbook_version(version: str, message: str = None) -> bool:
+def tag_playbook_version(version: str, message: Optional[str] = None) -> bool:
     """
     Create Git tag for playbook version.
 
@@ -134,7 +134,7 @@ def tag_playbook_version(version: str, message: str = None) -> bool:
         return False
 
 
-def compare_playbooks(playbook1_path: str, playbook2_path: str) -> Dict:
+def compare_playbooks(playbook1_path: str, playbook2_path: str) -> Dict[str, Any]:
     """
     Compare two playbook versions and return differences.
 
@@ -145,12 +145,12 @@ def compare_playbooks(playbook1_path: str, playbook2_path: str) -> Dict:
     Returns:
         Dictionary with comparison results
     """
-    from .playbook_schema import Playbook
+    from agentic_context_engineering.playbook_schema import Playbook
 
     playbook1 = Playbook.from_yaml(playbook1_path)
     playbook2 = Playbook.from_yaml(playbook2_path)
 
-    comparison = {
+    comparison: Dict[str, Any] = {
         "version_diff": {"from": playbook1.version, "to": playbook2.version},
         "heuristics": {"added": [], "removed": [], "updated": []},
         "examples": {

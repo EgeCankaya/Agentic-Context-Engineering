@@ -1,0 +1,22 @@
+{
+  "iterations": [
+    {
+      "success": true,
+      "iteration": 1,
+      "updated_playbook": "<Mock id='2624348763984'>",
+      "metrics": {
+        "avg_reflection_score": 0.8
+      }
+    }
+  ],
+  "final_playbook": "<Mock id='2624271501200'>",
+  "convergence_reached": false,
+  "total_iterations": 1,
+  "runtime_seconds": 0.0005230903625488281,
+  "configuration": {
+    "max_iterations": 1,
+    "num_tasks": 20,
+    "llm_model": "llama3.1:8b-instruct-fp16",
+    "convergence_threshold": 0.05
+  }
+}

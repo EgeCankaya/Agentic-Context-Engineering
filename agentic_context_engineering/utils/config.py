@@ -18,6 +18,9 @@ class LLMConfig(BaseModel):
     provider: str = "ollama"
     base_url: str = "http://localhost:11434"
     model: str = "mistral:7b-instruct"
+    # Common flattened parameters for convenience
+    temperature: float = 0.7
+    max_tokens: int = 2000
     parameters: Optional[Dict[str, Any]] = Field(default_factory=dict)
     gpu: Optional[Dict[str, Any]] = Field(default_factory=dict)
 

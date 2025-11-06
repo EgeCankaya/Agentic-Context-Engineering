@@ -60,11 +60,11 @@ class ConversationLogger:
 
     def __init__(
         self,
-        output_dir: str = "outputs/conversations",
+        output_dir: str | Path = "outputs/conversations",
         auto_save: bool = True,
         max_turns_per_session: Optional[int] = None,
     ) -> None:
-        self.output_dir = Path(output_dir)
+        self.output_dir = Path(str(output_dir))
         self.output_dir.mkdir(parents=True, exist_ok=True)
         self.auto_save = auto_save
         self.max_turns_per_session = max_turns_per_session

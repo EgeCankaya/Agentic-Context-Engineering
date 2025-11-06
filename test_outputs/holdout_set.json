@@ -1,0 +1,71 @@
+[
+  {
+    "id": "task_003",
+    "input": "How do I parse command line arguments in Python?",
+    "reference_output": "To parse command line arguments, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_010",
+    "input": "What's the most efficient way to handle async operations in Python?",
+    "reference_output": "To handle async operations, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action",
+      "asyncio"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_008",
+    "input": "What's the best way to work with environment variables in Python?",
+    "reference_output": "To work with environment variables, you can use Python's built-in modules and libraries.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "code_quality": "Includes runnable code examples",
+      "documentation": "References official documentation"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "action"
+    ],
+    "question_type": "action"
+  },
+  {
+    "id": "task_002",
+    "input": "How can I handle data validation in Python?",
+    "reference_output": "Here's how to handle data validation in Python.",
+    "evaluation_criteria": {
+      "accuracy": "Response contains correct information",
+      "completeness": "Response fully addresses the question",
+      "clarity": "Response is well-structured and easy to understand",
+      "error_handling": "Demonstrates proper error handling",
+      "robustness": "Shows robust solution approach"
+    },
+    "difficulty": "easy",
+    "tags": [
+      "scenario"
+    ],
+    "question_type": "scenario"
+  }
+]

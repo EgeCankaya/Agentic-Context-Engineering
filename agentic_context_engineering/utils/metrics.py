@@ -3,7 +3,7 @@ Metrics calculation for ACE evaluation.
 Implements BLEU, ROUGE, exact match, and semantic similarity metrics.
 """
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Sequence, Union
 
 import numpy as np
 from rouge_score import rouge_scorer
@@ -88,7 +88,9 @@ class MetricsCalculator:
         rouge_scores = {k: v / len(predictions) for k, v in rouge_scores.items()}
         return rouge_scores
 
-    def calculate_exact_match(self, predictions: List[str], references: List[str]) -> float:
+    def calculate_exact_match(
+        self, predictions: Union[Sequence[str], str], references: Union[Sequence[str], str]
+    ) -> float:
         """
         Calculate exact match accuracy.
 
@@ -99,6 +101,11 @@ class MetricsCalculator:
         Returns:
             Exact match accuracy (0-1)
         """
+        if isinstance(predictions, str):
+            predictions = [predictions]
+        if isinstance(references, str):
+            references = [references]
+
         if not predictions or not references:
             return 0.0
 
@@ -112,9 +119,11 @@ class MetricsCalculator:
             if pred.strip().lower() == ref.strip().lower():
                 exact_matches += 1
 
-        return exact_matches / len(predictions)
+        return float(exact_matches / len(predictions))
 
-    def calculate_semantic_similarity(self, predictions: List[str], references: List[str]) -> float:
+    def calculate_semantic_similarity(
+        self, predictions: Union[Sequence[str], str], references: Union[Sequence[str], str]
+    ) -> float:
         """
         Calculate semantic similarity using sentence transformers.
 
@@ -125,6 +134,11 @@ class MetricsCalculator:
         Returns:
             Average semantic similarity (0-1)
         """
+        if isinstance(predictions, str):
+            predictions = [predictions]
+        if isinstance(references, str):
+            references = [references]
+
         if not predictions or not references or self.sentence_model is None:
             return 0.0
 
@@ -144,7 +158,7 @@ class MetricsCalculator:
                 similarity = np.dot(pred_emb, ref_emb) / (np.linalg.norm(pred_emb) * np.linalg.norm(ref_emb))
                 similarities.append(similarity)
 
-            return np.mean(similarities)
+            return float(np.mean(similarities))
         except Exception as e:
             print(f"Semantic similarity calculation failed: {e}")
             return 0.0
