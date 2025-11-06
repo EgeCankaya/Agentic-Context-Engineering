@@ -6,7 +6,7 @@ import json
 import uuid
 from collections.abc import Iterable
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -19,7 +19,7 @@ class ConversationTurn:
     answer: str
     retrieved_docs: List[Dict[str, Any]] = field(default_factory=list)
     annotations: Dict[str, Any] = field(default_factory=dict)
-    timestamp: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    timestamp: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 
 @dataclass
@@ -29,7 +29,7 @@ class ConversationSession:
     session_id: str
     user_id: Optional[str] = None
     metadata: Dict[str, Any] = field(default_factory=dict)
-    created_at: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     closed_at: Optional[str] = None
     turns: List[ConversationTurn] = field(default_factory=list)
 
@@ -97,7 +97,7 @@ class ConversationLogger:
         """Close a session and persist it to disk if auto-save is enabled."""
 
         session = self._require_session(session_id)
-        session.closed_at = datetime.utcnow().isoformat()
+        session.closed_at = datetime.now(timezone.utc).isoformat()
         if self.auto_save:
             self._save_session(session)
 

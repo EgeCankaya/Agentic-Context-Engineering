@@ -68,8 +68,8 @@ class ConfigManager:
     """Manages ACE configuration loading and validation."""
 
     def __init__(self, config_path: Optional[str] = None):
-        self.config_path = config_path or "configs/default.yaml"
-        self._config = None
+        self.config_path: str = config_path or "configs/default.yaml"
+        self._config: Dict[str, Any] = {}
 
     def load_config(self, config_path: Optional[str] = None) -> Dict[str, Any]:
         """
@@ -84,12 +84,12 @@ class ConfigManager:
         if config_path:
             self.config_path = config_path
 
-        config_path = Path(self.config_path)
-        if not config_path.exists():
-            raise FileNotFoundError(f"Config file not found: {config_path}")
+        cfg_path_obj = Path(self.config_path)
+        if not cfg_path_obj.exists():
+            raise FileNotFoundError(f"Config file not found: {cfg_path_obj}")
 
         # Load YAML config
-        with open(config_path) as f:
+        with open(cfg_path_obj) as f:
             config = yaml.safe_load(f)
 
         # Apply environment variable overrides

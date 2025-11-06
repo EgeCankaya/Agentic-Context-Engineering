@@ -56,13 +56,12 @@ class ACEOrchestrator:
         self.em_threshold = 0.02
 
         # Create state graph
-        self.graph = self._create_graph()
+        self.graph = self._create_graph().compile(checkpointer=MemorySaver())
 
         logger.info("ACE orchestrator initialized")
 
     def _create_graph(self) -> StateGraph:
-        """Create the LangGraph workflow."""
-        # Create state graph
+        """Create the LangGraph workflow (uncompiled graph)."""
         workflow = StateGraph(ACEState)
 
         # Add nodes
@@ -80,9 +79,7 @@ class ACEOrchestrator:
         # Set entry point
         workflow.set_entry_point("generator")
 
-        # Compile graph
-        memory = MemorySaver()
-        return workflow.compile(checkpointer=memory)
+        return workflow
 
     def _generator_node(self, state: ACEState) -> ACEState:
         """Generator node: produce outputs for all tasks."""
