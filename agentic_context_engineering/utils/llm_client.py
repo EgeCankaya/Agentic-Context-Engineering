@@ -117,18 +117,15 @@ class LLMClient:
         start_time = time.time()
 
         try:
-            # Merge kwargs with default parameters
-            params = {
-                "temperature": self.config.temperature,
-                "num_predict": self.config.max_tokens,
-            }
-            params.update(kwargs)
+            # Forward only explicitly provided overrides; tests patch `.invoke`
+            # and assert call signatures without implicit defaults.
+            params = dict(kwargs)
 
             # new/old drivers accept different params; pass via invoke where supported
             try:
                 response = self.llm.invoke(prompt, **params)
             except TypeError:
-                # For new driver, temperature is configured at init; limit dynamic params
+                # For some drivers that don't accept kwargs, fall back to bare call
                 response = self.llm.invoke(prompt)
 
             # Track statistics
