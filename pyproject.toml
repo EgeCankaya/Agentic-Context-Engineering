@@ -8,7 +8,6 @@ keywords = ['python']
 requires-python = ">=3.9,<4.0"
 dependencies = [
     "langgraph>=0.2.0",
-    "langchain>=0.3.0",
     "langchain-community>=0.3.0",
     "pydantic>=2.0.0",
     "pydantic-settings>=2.0.0",
@@ -16,13 +15,9 @@ dependencies = [
     "numpy>=1.24.0",
     "sacrebleu>=2.0.0",
     "rouge-score>=0.1.0",
-    "tenacity>=8.0.0",
     "click>=8.0.0",
     "rich>=13.0.0",
     "pandas>=2.0.0",
-    "matplotlib>=3.7.0",
-    "jupyter>=1.0.0",
-    "ollama>=0.3.0",
     "torch>=2.0.0",
     "sentence-transformers>=2.2.0",
 ]
@@ -42,6 +37,17 @@ classifiers = [
 Homepage = "https://EgeCankaya.github.io/Agentic-Context-Engineering/"
 Repository = "https://github.com/EgeCankaya/Agentic-Context-Engineering"
 Documentation = "https://EgeCankaya.github.io/Agentic-Context-Engineering/"
+
+[project.optional-dependencies]
+# CLI examples
+examples = [
+    "typer>=0.12.0",
+]
+# Notebooks, plotting and exploration
+notebooks = [
+    "jupyter>=1.0.0",
+    "matplotlib>=3.7.0",
+]
 
 [dependency-groups]
 dev = [
@@ -146,3 +152,8 @@ skip_empty = true
 [tool.coverage.run]
 branch = true
 source = ["agentic_context_engineering"]
+
+[tool.deptry]
+# Optional extras for docs/notebooks are intentionally unused by the library code
+[tool.deptry.per_rule_ignores]
+DEP002 = ["jupyter", "matplotlib"]

@@ -10,6 +10,8 @@ from rich import print as rich_print
 
 from agentic_context_engineering import ConversationLogger
 
+from .simple_rag_bot import load_playbook, retrieve_docs  # type: ignore
+
 # Avoid hard dependency during type checking/CI
 if TYPE_CHECKING:  # pragma: no cover
     pass
@@ -20,16 +22,6 @@ try:  # runtime attempt
     typer = _typer
 except Exception:  # pragma: no cover - allow running without typer installed
     typer = cast(Any, object())
-
-try:  # Support running as script or module
-    from .simple_rag_bot import load_playbook, retrieve_docs  # type: ignore
-except ImportError:  # pragma: no cover - executed when run as standalone script
-    import sys
-
-    current_dir = Path(__file__).resolve().parent
-    sys.path.append(str(current_dir.parent.parent))
-    from examples.external_rag_integration.simple_rag_bot import load_playbook, retrieve_docs  # type: ignore
-
 
 app = typer.Typer(add_completion=False) if hasattr(typer, "Typer") else None
 

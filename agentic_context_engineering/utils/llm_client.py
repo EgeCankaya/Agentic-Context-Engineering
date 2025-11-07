@@ -6,7 +6,7 @@ Provides unified interface for Generator, Reflector, and Curator agents.
 import importlib
 import logging
 import time
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Type, cast
 
 import torch
 from pydantic import ConfigDict
@@ -18,20 +18,20 @@ logger = logging.getLogger(__name__)
 _NEW_OLLAMA = False
 
 
-def _resolve_ollama_cls():
+def _resolve_ollama_cls() -> Type[Any]:
     global _NEW_OLLAMA
     try:
-        mod = importlib.import_module("langchain_ollama")
+        mod = cast(Any, importlib.import_module("langchain_ollama"))
         _NEW_OLLAMA = True
-        return mod.OllamaLLM
+        return cast(Type[Any], mod.OllamaLLM)
     except Exception:  # pragma: no cover
-        mod = importlib.import_module("langchain_community.llms")
+        mod = cast(Any, importlib.import_module("langchain_community.llms"))
         _NEW_OLLAMA = False
-        return mod.Ollama
+        return cast(Type[Any], mod.Ollama)
 
 
 # Expose name expected by tests for patching
-Ollama = _resolve_ollama_cls()
+Ollama: Type[Any] = _resolve_ollama_cls()
 
 
 class LLMConfig(BaseSettings):
